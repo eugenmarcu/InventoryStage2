@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:title="Settings">
+
+    <EditTextPreference
+        android:defaultValue="General store 1"
+        android:inputType="textCapWords"
+        android:key="@string/store_name_key"
+        android:title="@string/store_name" />
+
+    <SwitchPreference
+        android:defaultValue="false"
+        android:key="@string/show_images_key"
+        android:title="@string/show_images_value" />
+
+    <SwitchPreference
+        android:defaultValue="false"
+        android:key="@string/order_by_name_key"
+        android:title="@string/order_by_name_value" />
+
+</PreferenceScreen>
