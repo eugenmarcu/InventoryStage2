@@ -352,8 +352,6 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
             case R.id.action_save:
                 // Save item to database
                 saveItem();
-                // Exit activity
-                finish();
                 return true;
             // Respond to a click on the "Delete" menu option
             case R.id.action_delete:
@@ -400,7 +398,7 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
         String barcodeString = mBarcodeText.getText().toString().trim();
         String imageUriString = mImageUri;
         //If no valid data exit method
-        if (mUri == null && TextUtils.isEmpty(nameString) && TextUtils.isEmpty(priceString))
+        if(!isValidData())
             return;
         double quantity = 0;
         double price = 0;
@@ -467,6 +465,33 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
                 Toast.makeText(this, getString(R.string.editor_insert_item_successful), Toast.LENGTH_SHORT).show();
             }
         }
+        // Exit activity
+        finish();
+    }
+
+    private boolean isValidData(){
+        if(TextUtils.isEmpty(mNameEditText.getText())) {
+            Toast.makeText(this, "Item requires a name", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        if(TextUtils.isEmpty(mPriceEditText.getText())) {
+            Toast.makeText(this, "Item requires a price",Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        if(TextUtils.isEmpty(mQuantityEditText.getText())) {
+            Toast.makeText(this, "Item requires a quantity",Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        if(TextUtils.isEmpty(mSupplierEditText.getText())) {
+            Toast.makeText(this, "Item requires a supplier",Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        if(TextUtils.isEmpty(mPhoneEditText.getText())) {
+            Toast.makeText(this, "Item requires a supplier phone number",Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        return true;
     }
 
     private void showOrderConfirmationDialog(final String number) {
